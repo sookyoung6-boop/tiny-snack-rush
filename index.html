@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiny Snack Rush</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell" aria-label="Tiny Snack Rush cooking game">
+    <section class="game-stage" id="gameStage">
+      <div class="scene-backdrop" aria-hidden="true"></div>
+      <img class="scene-overlay-layer" src="assets/ingame-overlay.png" alt="" aria-hidden="true">
+      <img class="main-character-layer" src="assets/main-character.png" alt="" aria-hidden="true">
+
+      <div class="bill-counter" aria-label="Money earned">
+        <span id="coinCount">0</span>
+      </div>
+
+      <div class="served-counter" aria-label="Customers served">
+        <span id="servedCount">0</span>
+      </div>
+
+      <div class="picture-timer" aria-label="Day timer">
+        <div class="picture-timer-mask" id="timerMask"></div>
+      </div>
+      <img class="timer-clock-overlay" src="assets/clock-overlay.png" alt="" aria-hidden="true">
+
+      <div class="customer-lane" id="customerLane" aria-live="polite"></div>
+      <div class="floating-layer" id="floatingLayer" aria-hidden="true"></div>
+      <div class="final-countdown" id="finalCountdown" aria-hidden="true"></div>
+
+      <div class="corner-controls" aria-label="Restart controls">
+        <button class="corner-logo-button" id="homeButton" type="button" aria-label="Return to welcome screen">
+          <img src="assets/home-logo.png" alt="Three Four">
+        </button>
+        <button class="corner-restart-button" id="cornerRestartButton" type="button">restart</button>
+      </div>
+
+      <section class="prep-counter" aria-label="Cooking stations">
+        <button class="station" type="button" data-food="noodle" aria-label="Cook noodle cup">
+          <span class="station-image"><img src="assets/station-noodle.png" alt=""></span>
+          <span class="station-status">tap</span>
+          <span class="station-hint"><span>tap to</span><span>prepare</span></span>
+          <span class="station-progress"><span></span></span>
+          <span class="melt-layer" aria-hidden="true"></span>
+        </button>
+
+        <button class="station" type="button" data-food="melon" aria-label="Make melon drink">
+          <span class="station-image"><img src="assets/station-melon.png" alt=""></span>
+          <span class="station-status">tap</span>
+          <span class="station-hint"><span>tap to</span><span>prepare</span></span>
+          <span class="station-progress"><span></span></span>
+          <span class="melt-layer" aria-hidden="true"></span>
+        </button>
+
+        <button class="station" type="button" data-food="ice" aria-label="Make iced dessert">
+          <span class="station-image"><img src="assets/station-ice.png" alt=""></span>
+          <span class="station-status">tap</span>
+          <span class="station-hint"><span>tap to</span><span>prepare</span></span>
+          <span class="station-progress"><span></span></span>
+          <span class="melt-layer" aria-hidden="true"></span>
+        </button>
+
+        <button class="station" type="button" data-food="dumpling" aria-label="Steam dumplings">
+          <span class="station-image"><img src="assets/station-dumpling.png" alt=""></span>
+          <span class="station-status">tap</span>
+          <span class="station-hint"><span>tap to</span><span>prepare</span></span>
+          <span class="station-progress"><span></span></span>
+          <span class="melt-layer" aria-hidden="true"></span>
+        </button>
+
+        <button class="station" type="button" data-food="milk" aria-label="Prepare milk cup">
+          <span class="station-image"><img src="assets/station-milk.png" alt=""></span>
+          <span class="station-status">tap</span>
+          <span class="station-hint"><span>tap to</span><span>prepare</span></span>
+          <span class="station-progress"><span></span></span>
+          <span class="melt-layer" aria-hidden="true"></span>
+        </button>
+      </section>
+
+      <button class="trash-zone" id="trashZone" type="button" aria-label="Throw away held food">
+        <img class="trash-image trash-image-blue" src="assets/trash-blue.png" alt="">
+        <img class="trash-image trash-image-red" src="assets/trash-red.png" alt="">
+      </button>
+
+      <div class="held-food" id="heldFood" hidden aria-hidden="true"></div>
+
+      <section class="overlay is-visible" id="startOverlay" aria-label="Start screen">
+        <div class="overlay-panel">
+          <img class="home-logo" src="assets/home-logo.png" alt="Three Four">
+          <img class="overlay-mascot" src="assets/welcome-character.png" alt="">
+          <h1>Tiny Snack Rush</h1>
+          <button class="primary-button" id="startButton" type="button">Open shop</button>
+        </div>
+      </section>
+
+      <section class="overlay" id="resultOverlay" aria-label="Results screen">
+        <div class="overlay-panel results-panel">
+          <h2>Shift Complete</h2>
+          <dl class="results-list">
+            <div>
+              <dt>Bills</dt>
+              <dd id="resultCoins">0</dd>
+            </div>
+            <div>
+              <dt>Served</dt>
+              <dd id="resultServed">0</dd>
+            </div>
+            <div>
+              <dt>Missed</dt>
+              <dd id="resultMissed">0</dd>
+            </div>
+          </dl>
+          <button class="primary-button" id="restartButton" type="button">Restart</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
