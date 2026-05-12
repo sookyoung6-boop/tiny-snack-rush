@@ -46,25 +46,31 @@ button {
 }
 
 .game-shell {
-  display: grid;
+  position: fixed;
+  inset: 0;
+  display: block;
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
-  place-items: center;
   overflow: hidden;
   padding: 0;
 }
 
 .game-stage {
-  position: relative;
-  width: min(100vw, 216.666667vh, 2340px);
-  aspect-ratio: 2340 / 1080;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2340px;
+  height: 1080px;
+  aspect-ratio: auto;
   max-height: none;
   overflow: hidden;
   border: clamp(3px, 0.5vmin, 7px) solid var(--line);
   border-radius: 8px;
   background: var(--cream);
   box-shadow: 0 22px 55px rgba(74, 52, 37, 0.26);
+  transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
+  transform-origin: center center;
   touch-action: none;
   user-select: none;
 }
@@ -77,10 +83,6 @@ button {
   .game-shell {
     height: 100svh;
     min-height: 100svh;
-  }
-
-  .game-stage {
-    width: min(100vw, 216.666667svh, 2340px);
   }
 }
 
@@ -905,12 +907,12 @@ button {
 }
 
 @keyframes errorStageShake {
-  0%, 100% { transform: translate(0, 0); }
-  14% { transform: translate(-5px, 2px); }
-  28% { transform: translate(6px, -2px); }
-  42% { transform: translate(-4px, 1px); }
-  56% { transform: translate(4px, 2px); }
-  72% { transform: translate(-2px, -1px); }
+  0%, 100% { translate: 0 0; }
+  14% { translate: -5px 2px; }
+  28% { translate: 6px -2px; }
+  42% { translate: -4px 1px; }
+  56% { translate: 4px 2px; }
+  72% { translate: -2px -1px; }
 }
 
 @keyframes errorScreenFlash {

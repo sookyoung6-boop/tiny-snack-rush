@@ -1,6 +1,8 @@
 // Tiny Snack Rush
 // A self-contained cooking time-management game using image crops from the supplied art.
 
+const STAGE_WIDTH = 2340;
+const STAGE_HEIGHT = 1080;
 const DAY_LENGTH = 60;
 const MAX_CUSTOMERS = 2;
 const MAIN_CHARACTER_FRONT = "assets/main-character.png";
@@ -104,6 +106,7 @@ const state = {
   mainCharacterTimers: [],
   mainCharacterSadUntil: 0,
   mainCharacterSadTimer: null,
+  viewportResizeFrame: null,
   customerId: 0
 };
 
@@ -124,6 +127,19 @@ dom.cornerRestartButton.addEventListener("click", returnToWelcome);
 dom.timerClockOverlay.addEventListener("animationend", () => {
   dom.timerClockOverlay.classList.remove("is-pulsing");
 });
+
+fitStageToViewport();
+window.addEventListener("resize", requestStageFit);
+window.addEventListener("orientationchange", () => {
+  requestStageFit();
+  setTimeout(requestStageFit, 250);
+  setTimeout(requestStageFit, 650);
+});
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", requestStageFit);
+  window.visualViewport.addEventListener("scroll", requestStageFit);
+}
 
 dom.trashZone.addEventListener("pointerup", () => {
   if (state.held) {
@@ -190,6 +206,24 @@ dom.customerLane.addEventListener("click", (event) => {
   const customer = state.customers.find((item) => String(item.id) === customerElement.dataset.id);
   if (customer) serveCustomer(customer);
 });
+
+function requestStageFit() {
+  cancelAnimationFrame(state.viewportResizeFrame);
+  state.viewportResizeFrame = requestAnimationFrame(fitStageToViewport);
+}
+
+function fitStageToViewport() {
+  const viewport = window.visualViewport;
+  const width = viewport?.width || window.innerWidth || document.documentElement.clientWidth || STAGE_WIDTH;
+  const height = viewport?.height || window.innerHeight || document.documentElement.clientHeight || STAGE_HEIGHT;
+  const left = viewport?.offsetLeft || 0;
+  const top = viewport?.offsetTop || 0;
+  const scale = Math.min(width / STAGE_WIDTH, height / STAGE_HEIGHT, 1);
+
+  dom.stage.style.setProperty("--stage-scale", scale.toFixed(4));
+  dom.stage.style.left = `${left + width / 2}px`;
+  dom.stage.style.top = `${top + height / 2}px`;
+}
 
 function startGame() {
   state.running = true;
