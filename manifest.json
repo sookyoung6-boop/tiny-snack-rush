@@ -9,8 +9,8 @@
   "theme_color": "#fff8eb",
   "icons": [
     {
-      "src": "assets/home-logo.png",
-      "sizes": "512x512",
+      "src": "assets/app-icon.png",
+      "sizes": "1600x1600",
       "type": "image/png",
       "purpose": "any"
     }
