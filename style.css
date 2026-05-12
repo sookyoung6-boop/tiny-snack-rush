@@ -47,16 +47,19 @@ button {
 
 .game-shell {
   display: grid;
+  width: 100vw;
+  height: 100vh;
   min-height: 100vh;
   place-items: center;
-  padding: clamp(6px, 1.4vmin, 18px);
+  overflow: hidden;
+  padding: 0;
 }
 
 .game-stage {
   position: relative;
-  width: min(100vw, 2340px);
+  width: min(100vw, 216.666667vh, 2340px);
   aspect-ratio: 2340 / 1080;
-  max-height: 100vh;
+  max-height: none;
   overflow: hidden;
   border: clamp(3px, 0.5vmin, 7px) solid var(--line);
   border-radius: 8px;
@@ -64,6 +67,21 @@ button {
   box-shadow: 0 22px 55px rgba(74, 52, 37, 0.26);
   touch-action: none;
   user-select: none;
+}
+
+@supports (height: 100svh) {
+  body {
+    min-height: 100svh;
+  }
+
+  .game-shell {
+    height: 100svh;
+    min-height: 100svh;
+  }
+
+  .game-stage {
+    width: min(100vw, 216.666667svh, 2340px);
+  }
 }
 
 .game-stage.is-error-feedback {
@@ -964,10 +982,16 @@ button {
   }
 
   .game-stage {
-    width: min(100vw, calc(100vh * 2.1666667));
-    max-height: 100vh;
+    width: min(100vw, 216.666667vh);
+    max-height: none;
     aspect-ratio: 2340 / 1080;
     border: 0;
     border-radius: 0;
+  }
+
+  @supports (height: 100svh) {
+    .game-stage {
+      width: min(100vw, 216.666667svh);
+    }
   }
 }
