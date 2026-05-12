@@ -693,8 +693,9 @@ button {
   z-index: 118;
   left: 50%;
   top: 50%;
-  display: none;
-  transform: translate(-50%, -50%);
+  display: block;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, 0) scale(1);
   pointer-events: none;
   color: rgba(255, 255, 255, 0.46);
   font-size: 368px;
@@ -703,11 +704,20 @@ button {
   text-align: center;
   -webkit-text-stroke: 9px rgba(23, 18, 16, 0.24);
   text-shadow: 0 10px 0 rgba(23, 18, 16, 0.08);
+  contain: layout paint style;
+  will-change: opacity, transform;
 }
 
 .final-countdown.is-visible {
-  display: block;
-  animation: countdownPop 0.3s ease-out both;
+  opacity: 1;
+}
+
+.final-countdown.is-pulse-a {
+  animation: countdownPopA 0.3s ease-out both;
+}
+
+.final-countdown.is-pulse-b {
+  animation: countdownPopB 0.3s ease-out both;
 }
 
 .corner-controls {
@@ -939,10 +949,16 @@ button {
   100% { opacity: 0; }
 }
 
-@keyframes countdownPop {
-  0% { opacity: 0; scale: 0.86; }
-  35% { opacity: 1; scale: 1.04; }
-  100% { opacity: 1; scale: 1; }
+@keyframes countdownPopA {
+  0% { opacity: 0; transform: translate3d(-50%, -50%, 0) scale(0.86); }
+  35% { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1.04); }
+  100% { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1); }
+}
+
+@keyframes countdownPopB {
+  0% { opacity: 0; transform: translate3d(-50%, -50%, 0) scale(0.86); }
+  35% { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1.04); }
+  100% { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1); }
 }
 
 @keyframes happyPop {

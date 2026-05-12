@@ -101,6 +101,8 @@ const state = {
   errorFeedbackTimeout: null,
   timerFlashTimeout: null,
   lastCountdownSecond: null,
+  countdownVisible: false,
+  countdownPulseAlt: false,
   halfClockPulsed: false,
   mainCharacterMotionId: 0,
   mainCharacterTimers: [],
@@ -238,6 +240,8 @@ function startGame() {
   state.lastFrame = performance.now();
   state.pendingDrag = null;
   state.lastCountdownSecond = null;
+  state.countdownVisible = false;
+  state.countdownPulseAlt = false;
   state.halfClockPulsed = false;
   clearTimeout(state.clockPulseTimeout);
   dom.timerClockOverlay.classList.remove("is-pulsing");
@@ -278,6 +282,8 @@ function returnToWelcome() {
   state.customerId = 0;
   state.pendingDrag = null;
   state.lastCountdownSecond = null;
+  state.countdownVisible = false;
+  state.countdownPulseAlt = false;
   state.halfClockPulsed = false;
   clearTimeout(state.clockPulseTimeout);
   dom.timerClockOverlay.classList.remove("is-pulsing");
@@ -873,29 +879,36 @@ function clearErrorFeedback() {
 function updateFinalCountdown() {
   const second = Math.ceil(state.timeLeft);
   if (state.timeLeft <= 0 || second > 5) {
-    hideFinalCountdown();
+    if (state.countdownVisible || state.lastCountdownSecond !== null) {
+      hideFinalCountdown();
+    }
     state.lastCountdownSecond = null;
     return;
   }
 
-  dom.finalCountdown.textContent = second;
   if (second !== state.lastCountdownSecond) {
-    dom.finalCountdown.classList.remove("is-visible");
-    dom.finalCountdown.offsetHeight;
+    dom.finalCountdown.textContent = second;
+    state.countdownVisible = true;
     dom.finalCountdown.classList.add("is-visible");
+    dom.finalCountdown.classList.toggle("is-pulse-a", state.countdownPulseAlt);
+    dom.finalCountdown.classList.toggle("is-pulse-b", !state.countdownPulseAlt);
+    state.countdownPulseAlt = !state.countdownPulseAlt;
     if (second <= 3) playTimerFlash();
     state.lastCountdownSecond = second;
   }
 }
 
 function hideFinalCountdown() {
+  if (!state.countdownVisible && !dom.finalCountdown.textContent) return;
   dom.finalCountdown.classList.remove("is-visible");
+  dom.finalCountdown.classList.remove("is-pulse-a");
+  dom.finalCountdown.classList.remove("is-pulse-b");
   dom.finalCountdown.textContent = "";
+  state.countdownVisible = false;
 }
 
 function playTimerFlash() {
   clearTimerFlash();
-  dom.stage.offsetHeight;
   dom.stage.classList.add("is-timer-flash");
   state.timerFlashTimeout = setTimeout(clearTimerFlash, 390);
 }
