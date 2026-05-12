@@ -220,6 +220,7 @@ function fitStageToViewport() {
   const top = viewport?.offsetTop || 0;
   const scale = Math.min(width / STAGE_WIDTH, height / STAGE_HEIGHT, 1);
 
+  document.documentElement.style.setProperty("--stage-scale", scale.toFixed(4));
   dom.stage.style.setProperty("--stage-scale", scale.toFixed(4));
   dom.stage.style.left = `${left + width / 2}px`;
   dom.stage.style.top = `${top + height / 2}px`;

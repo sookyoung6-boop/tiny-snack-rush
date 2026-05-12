@@ -10,6 +10,7 @@ Keep this structure together when uploading to GitHub:
 index.html
 style.css
 game.js
+manifest.json
 assets/
 .nojekyll
 ```
@@ -51,6 +52,7 @@ tiny-snack-rush
 index.html
 style.css
 game.js
+manifest.json
 assets/
 .nojekyll
 README.md

@@ -27,10 +27,21 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body {
   margin: 0;
+  width: 100%;
+  height: 100%;
   min-height: 100vh;
   overflow: hidden;
+  position: fixed;
+  inset: 0;
   color: var(--ink);
   font-weight: 1000;
   -webkit-text-stroke: 0.65px currentColor;
@@ -65,7 +76,7 @@ button {
   aspect-ratio: auto;
   max-height: none;
   overflow: hidden;
-  border: clamp(3px, 0.5vmin, 7px) solid var(--line);
+  border: 7px solid var(--line);
   border-radius: 8px;
   background: var(--cream);
   box-shadow: 0 22px 55px rgba(74, 52, 37, 0.26);
@@ -173,7 +184,7 @@ button {
   z-index: 1;
   display: block;
   color: #085ca5;
-  font-size: clamp(1rem, 2.25vw, 3.05rem);
+  font-size: 49px;
   font-weight: 900;
   line-height: 1;
   text-align: center;
@@ -186,7 +197,7 @@ button {
 }
 
 .served-counter span {
-  font-size: clamp(1rem, 2vw, 2.7rem);
+  font-size: 43px;
 }
 
 .picture-timer {
@@ -254,8 +265,8 @@ button {
 .customer {
   position: absolute;
   bottom: 0;
-  width: clamp(150px, 19vw, 320px);
-  height: clamp(190px, 24vw, 410px);
+  width: 320px;
+  height: 410px;
   transform: translateX(-50%);
   pointer-events: auto;
   animation: waitingBounce 1.7s ease-in-out infinite;
@@ -293,14 +304,14 @@ button {
   position: absolute;
   top: 0;
   left: 50%;
-  min-width: clamp(118px, 14vw, 220px);
-  min-height: clamp(62px, 8vw, 118px);
+  min-width: 220px;
+  min-height: 118px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(4px, 0.6vw, 10px);
-  padding: clamp(8px, 1.15vw, 18px);
-  border: clamp(3px, 0.4vmin, 6px) solid var(--line);
+  gap: 10px;
+  padding: 18px;
+  border: 5px solid var(--line);
   border-radius: 28px;
   background: rgba(255, 255, 255, 0.97);
   box-shadow: var(--soft-shadow);
@@ -314,8 +325,8 @@ button {
   bottom: -19px;
   width: 26px;
   height: 26px;
-  border-right: clamp(3px, 0.4vmin, 6px) solid var(--line);
-  border-bottom: clamp(3px, 0.4vmin, 6px) solid var(--line);
+  border-right: 5px solid var(--line);
+  border-bottom: 5px solid var(--line);
   background: inherit;
   transform: translateX(-50%) rotate(45deg);
 }
@@ -323,7 +334,7 @@ button {
 .order-icon {
   position: relative;
   z-index: 1;
-  width: clamp(42px, 5.5vw, 88px);
+  width: 88px;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -348,7 +359,7 @@ button {
   left: 13%;
   right: 13%;
   bottom: 1%;
-  height: clamp(13px, 1.8vw, 23px);
+  height: 23px;
   overflow: hidden;
   border: 3px solid var(--line);
   border-radius: 999px;
@@ -476,7 +487,7 @@ button {
   text-align: center;
   white-space: nowrap;
   text-shadow: 0 2px 0 #ffffff;
-  font-size: clamp(0.9rem, 1.8vw, 1.8rem);
+  font-size: 29px;
   font-weight: 1000;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -498,7 +509,7 @@ button {
   min-width: max-content;
   transform: translate(-50%, 0.15rem);
   color: #ffffff;
-  font-size: clamp(0.99rem, 1.67vw, 1.44rem);
+  font-size: 23px;
   font-weight: 800;
   line-height: 1;
   text-align: center;
@@ -551,7 +562,7 @@ button {
   left: 14%;
   right: 14%;
   bottom: 5%;
-  height: clamp(7px, 1vw, 14px);
+  height: 14px;
   opacity: 0;
 }
 
@@ -636,7 +647,7 @@ button {
 .held-food {
   position: fixed;
   z-index: 100;
-  width: clamp(74px, 9vw, 150px);
+  width: calc(150px * var(--stage-scale, 1));
   aspect-ratio: 1;
   display: grid;
   place-items: center;
@@ -661,7 +672,7 @@ button {
   border-radius: 999px;
   background: #fff6bf;
   color: #bd5742;
-  font-size: clamp(0.62rem, 1vw, 0.88rem);
+  font-size: calc(14px * var(--stage-scale, 1));
   font-weight: 900;
 }
 
@@ -685,11 +696,11 @@ button {
   transform: translate(-50%, -50%);
   pointer-events: none;
   color: rgba(255, 255, 255, 0.46);
-  font-size: clamp(8rem, 24vw, 23rem);
+  font-size: 368px;
   font-weight: 1000;
   line-height: 0.85;
   text-align: center;
-  -webkit-text-stroke: clamp(3px, 0.65vw, 9px) rgba(23, 18, 16, 0.24);
+  -webkit-text-stroke: 9px rgba(23, 18, 16, 0.24);
   text-shadow: 0 10px 0 rgba(23, 18, 16, 0.08);
 }
 
@@ -703,11 +714,11 @@ button {
   z-index: 82;
   top: 1.4%;
   right: 1.4%;
-  width: clamp(96px, 13vw, 230px);
+  width: 230px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: clamp(2px, 0.32vw, 7px);
+  gap: 7px;
 }
 
 .corner-logo-button {
@@ -742,7 +753,7 @@ button {
   box-shadow: 0 4px 0 rgba(55, 35, 20, 0.14);
   color: #111111;
   font-family: inherit;
-  font-size: clamp(0.8rem, 1.35vw, 1.5rem);
+  font-size: 24px;
   font-weight: 1000;
   line-height: 1;
   text-align: center;
@@ -764,7 +775,7 @@ button {
   background: #fff3b7;
   box-shadow: 0 5px 0 rgba(55, 35, 20, 0.13);
   color: #216095;
-  font-size: clamp(0.9rem, 1.8vw, 1.8rem);
+  font-size: 29px;
   font-weight: 900;
   animation: floatUp 0.85s ease-out forwards;
 }
@@ -796,9 +807,9 @@ button {
 
 .overlay-panel {
   width: min(92%, 500px);
-  padding: clamp(16px, 2.8vw, 30px);
+  padding: 30px;
   text-align: center;
-  border: clamp(4px, 0.55vmin, 7px) solid var(--line);
+  border: 7px solid var(--line);
   border-radius: 30px 26px 28px 24px;
   background:
     radial-gradient(circle at 22% 14%, rgba(255, 230, 127, 0.55), transparent 40%),
@@ -825,7 +836,7 @@ button {
 .overlay h1 {
   margin: 0.3rem 0 1.15rem;
   color: #22629d;
-  font-size: clamp(1.7rem, 4.1vw, 3.25rem);
+  font-size: 52px;
   line-height: 1;
   text-shadow: 0 4px 0 #ffffff;
 }
@@ -833,32 +844,32 @@ button {
 .overlay h2 {
   margin: 0;
   color: #22629d;
-  font-size: clamp(2rem, 5vw, 4.2rem);
+  font-size: 67px;
   line-height: 1;
   text-shadow: 0 4px 0 #ffffff;
 }
 
 .overlay h2 {
-  font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+  font-size: 54px;
 }
 
 .overlay p {
   margin: 0.7rem 0 1.15rem;
   color: #6a5143;
-  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-size: 22px;
   font-weight: 800;
 }
 
 .primary-button {
   cursor: pointer;
-  min-width: min(78vw, 220px);
+  min-width: 220px;
   padding: 0.8rem 1.4rem;
-  border: clamp(3px, 0.45vmin, 6px) solid var(--line);
+  border: 6px solid var(--line);
   border-radius: 999px;
   background: linear-gradient(180deg, #fff9b9, #ffd76f);
   box-shadow: 0 7px 0 #d79f36;
   color: #2f5d42;
-  font-size: clamp(1rem, 2vw, 1.55rem);
+  font-size: 25px;
   font-weight: 900;
 }
 
@@ -883,7 +894,7 @@ button {
 
 .results-list dt {
   color: #876956;
-  font-size: clamp(0.72rem, 1.3vw, 0.95rem);
+  font-size: 15px;
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -891,7 +902,7 @@ button {
 .results-list dd {
   margin: 0.1rem 0 0;
   color: #1d619e;
-  font-size: clamp(1.2rem, 2.8vw, 2.4rem);
+  font-size: 38px;
   font-weight: 900;
 }
 

@@ -1,0 +1,18 @@
+{
+  "name": "Tiny Snack Rush",
+  "short_name": "Tiny Snack",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#fff8eb",
+  "theme_color": "#fff8eb",
+  "icons": [
+    {
+      "src": "assets/home-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
