@@ -971,27 +971,3 @@ button {
   18% { opacity: 1; }
   100% { opacity: 0; transform: translate(-50%, -70px) scale(1.05); }
 }
-
-@media (max-width: 760px) {
-  body {
-    overflow: hidden;
-  }
-
-  .game-shell {
-    padding: 0;
-  }
-
-  .game-stage {
-    width: min(100vw, 216.666667vh);
-    max-height: none;
-    aspect-ratio: 2340 / 1080;
-    border: 0;
-    border-radius: 0;
-  }
-
-  @supports (height: 100svh) {
-    .game-stage {
-      width: min(100vw, 216.666667svh);
-    }
-  }
-}
