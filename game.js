@@ -456,8 +456,23 @@ function beginHeldFood(station, x, y) {
 
 function moveHeldFood(x, y) {
   state.pointer = { x, y };
-  dom.heldFood.style.left = `${x}px`;
-  dom.heldFood.style.top = `${y}px`;
+  const point = clientPointToStagePoint(x, y);
+  dom.heldFood.style.left = `${point.x}px`;
+  dom.heldFood.style.top = `${point.y}px`;
+}
+
+function clientPointToStagePoint(x, y) {
+  const rect = dom.stage.getBoundingClientRect();
+  const stageStyle = getComputedStyle(dom.stage);
+  const borderLeft = parseFloat(stageStyle.borderLeftWidth) || 0;
+  const borderTop = parseFloat(stageStyle.borderTopWidth) || 0;
+  const scaleX = rect.width / STAGE_WIDTH || 1;
+  const scaleY = rect.height / STAGE_HEIGHT || scaleX;
+
+  return {
+    x: (x - rect.left) / scaleX - borderLeft,
+    y: (y - rect.top) / scaleY - borderTop
+  };
 }
 
 function finishServeAtPoint(x, y) {

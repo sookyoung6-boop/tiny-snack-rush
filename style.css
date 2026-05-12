@@ -645,15 +645,16 @@ button {
 }
 
 .held-food {
-  position: fixed;
+  position: absolute;
   z-index: 100;
-  width: calc(150px * var(--stage-scale, 1));
+  width: 150px;
   aspect-ratio: 1;
   display: grid;
   place-items: center;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(1.05);
   filter: drop-shadow(0 12px 10px rgba(41, 27, 20, 0.22));
+  will-change: left, top, transform;
 }
 
 .held-food img {
@@ -672,7 +673,7 @@ button {
   border-radius: 999px;
   background: #fff6bf;
   color: #bd5742;
-  font-size: calc(14px * var(--stage-scale, 1));
+  font-size: 14px;
   font-weight: 900;
 }
 
