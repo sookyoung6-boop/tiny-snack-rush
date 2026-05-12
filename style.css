@@ -964,77 +964,10 @@ button {
   }
 
   .game-stage {
-    width: 100vw;
-    height: 100vh;
-    max-height: none;
-    aspect-ratio: auto;
+    width: min(100vw, calc(100vh * 2.1666667));
+    max-height: 100vh;
+    aspect-ratio: 2340 / 1080;
     border: 0;
     border-radius: 0;
-  }
-
-  .scene-backdrop {
-    background-position: center;
-    background-size: cover;
-  }
-
-  .bill-counter {
-    top: 8.65%;
-    left: 6.1%;
-    width: 24vw;
-    height: 7.7vh;
-  }
-
-  .served-counter {
-    top: 27.75%;
-    left: 6.55%;
-    width: 13.7vw;
-    height: 7.8vh;
-  }
-
-  .bill-counter span,
-  .served-counter span {
-    font-size: clamp(1rem, 5.5vw, 1.85rem);
-  }
-
-  .customer-lane {
-    left: 1%;
-    right: 1%;
-    top: 17%;
-    height: 40%;
-  }
-
-  .customer {
-    width: 31vw;
-    height: min(34vh, 230px);
-  }
-
-  .customer.slot-0 { left: 22%; }
-  .customer.slot-1 { left: 82%; }
-
-  .order-bubble {
-    min-width: 86px;
-    min-height: 52px;
-    padding: 6px;
-    border-radius: 18px;
-    gap: 3px;
-  }
-
-  .order-icon {
-    width: 36px;
-    border-radius: 12px;
-  }
-
-  .station-status {
-    font-size: 0.58rem;
-  }
-
-  .station-hint {
-    font-size: 0.72rem;
-  }
-
-  .trash-zone {
-    right: 0;
-    bottom: 0;
-    width: 20vw;
   }
 }
